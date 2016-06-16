@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Game {
 
@@ -10,27 +10,9 @@ public class Game {
         player.chooseWeapon();
         player.chooseLocation();
 
-//        int counter = 0;
-//        while(counter < 100){
-//            counter++;
-//        }
+        player.addItem(new Item("Potion", "Heals 10 hit points"));
+        player.addItem(new Item("Wheel of Cheese", "Heals 20 hit points"));
 
-//        for(int i = 0; i < 10; i++){
-//            for(int j = 0; j < 5; j++){
-//                if((i + j) % 3 == 0) {
-//                    continue;
-//                }
-//
-//                if(i == 6){
-//                    break;
-//                }
-//
-//                System.out.println(i);
-//                System.out.println("FOO");
-//            }
-
-
-//        }
 
     }
 }

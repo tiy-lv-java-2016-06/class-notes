@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -8,9 +9,26 @@ public class Player {
     private String weapon;
     private String location;
     private Scanner scanner = new Scanner(System.in);
+    private ArrayList<Item> items = new ArrayList<>();
 
-    public String getName(){
-        return this.name;
+    public ArrayList<Item> getItems(){
+        return items;
+    }
+
+    public void addItem(Item item){
+        items.add(item);
+    }
+
+    public ArrayList<Item> findItem(String name){
+        ArrayList<Item> rval = null;
+
+        for(Item item : this.items){
+            if(item.getName().equalsIgnoreCase(name)){
+                rval.add(item);
+            }
+        }
+
+        return rval;
     }
 
     public String getWeapon(){
@@ -37,7 +55,7 @@ public class Player {
         System.out.println("What is your name foolish traveller?");
 
 
-        String name = scanner.nextLine();
+        this.name = scanner.nextLine();
 
         System.out.println("Welcome, " + name);
     }
