@@ -8,6 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
         List<Animal> animals = new ArrayList<>();
+        List<Speakable> talkers = new ArrayList<>();
 
         Dog dog = new Dog("Spot", "Dalmation", "White");
         dog.speak();

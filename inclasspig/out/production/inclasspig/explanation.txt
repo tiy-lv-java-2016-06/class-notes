@@ -1,0 +1,3 @@
+Each turn a player rolls a die and adds the amount of points to that turn's total.  After each roll the player decides
+whether to roll again.  If the player rolls a 1 all points for that turn are forfeit.  The process repeats alternating
+players until one player reaches 100 points.

@@ -1,7 +1,7 @@
 /**
  * Created by jeff on 6/20/16.
  */
-public class Animal {
+public abstract class Animal {
     private String name;
     private String breed;
     private String color;
@@ -24,9 +24,7 @@ public class Animal {
         return color;
     }
 
-    public void speak(){
-        System.out.println("** Sits quietly **");
-    }
+    public abstract void speak();
 
     @Override
     public boolean equals(Object o) {
@@ -39,24 +37,7 @@ public class Animal {
 
         Animal animal = (Animal) o;
 
-        if (name != null){
-            if(!name.equals(animal.name)){
-                return false;
-            }
-            else if(animal.name != null){
-                return false;
-            }
-        }
-        int number = 0;
-        if(number % 2 == 0){
-            System.out.println("I am even");
-        }
-        else{
-            System.out.println("I am odd");
-        }
-
-        number % 2 == 0 ? System.out.println("I am even") : System.out.println("I am odd")
-
+        if (name != null ? !name.equals(animal.name) : animal.name != null) return false;
         if (breed != null ? !breed.equals(animal.breed) : animal.breed != null) return false;
         return color != null ? color.equals(animal.color) : animal.color == null;
 

@@ -1,7 +1,7 @@
 /**
  * Created by jeff on 6/20/16.
  */
-public class Dog extends Animal {
+public class Dog extends Animal implements Speakable {
 
     public Dog(String name, String breed, String color) {
         super(name, breed, color);

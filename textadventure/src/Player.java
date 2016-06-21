@@ -4,12 +4,15 @@ import java.util.Scanner;
 /**
  * Created by jeff on 6/15/16.
  */
-public class Player {
-    private String name;
+public class Player extends Character{
     private String weapon;
     private String location;
     private Scanner scanner = new Scanner(System.in);
     private ArrayList<Item> items = new ArrayList<>();
+
+    public Player(){
+        super(500, 30);
+    }
 
     public ArrayList<Item> getItems(){
         return items;
@@ -39,10 +42,6 @@ public class Player {
         return this.location;
     }
 
-    public void setName(String name){
-        this.name = name;
-    }
-
     public void setWeapon(String weapon){
         this.weapon = weapon;
     }
@@ -55,9 +54,9 @@ public class Player {
         System.out.println("What is your name foolish traveller?");
 
 
-        this.name = scanner.nextLine();
+        setName(scanner.nextLine());
 
-        System.out.println("Welcome, " + name);
+        System.out.println("Welcome, " + getName());
     }
 
     public void chooseWeapon() throws Exception {
@@ -93,7 +92,7 @@ public class Player {
             } else if (location.equalsIgnoreCase("cave")) {
                 message = "Now entering dark cave...";
             }
-        }while(message == null);
+        } while(message == null);
         System.out.println(message);
     }
 }
