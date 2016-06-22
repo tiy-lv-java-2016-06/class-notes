@@ -12,7 +12,7 @@ public class Turn {
     public int runTurn(){
 
         boolean turnOver = false;
-
+        System.out.println("************************************************");
         System.out.format("It is %s's turn to roll\n", player.getName());
         do {
             int roll = player.roll();
@@ -21,7 +21,7 @@ public class Turn {
             if(roll > 1){
                 score += roll;
                 System.out.format("Your total is now %d\n", score);
-                turnOver = !player.rollAgain();
+                turnOver = !player.rollAgain(score);
             }
             else{
                 score = 0;
