@@ -6,5 +6,10 @@ public class Main {
         for(Suit s : Suit.values()){
             System.out.println(s);
         }
+
+        for(Rank r : Rank.values()){
+            System.out.format("%s has a value of %d\n", r, r.getValue());
+        }
+
     }
 }
