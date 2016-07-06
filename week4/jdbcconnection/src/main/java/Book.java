@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * Created by jeff on 7/6/16.
@@ -53,7 +50,12 @@ public class Book {
                     conn.prepareStatement("INSERT INTO book (title, author) VALUES(?, ?)");
             insert.setString(1, title);
             insert.setString(2, author);
-            insert.execute();
+            insert.executeUpdate();
+
+            ResultSet rs = insert.getGeneratedKeys();
+            rs.next();
+            this.id = rs.getInt("id");
+
 
         }
     }
