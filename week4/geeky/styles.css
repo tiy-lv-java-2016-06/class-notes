@@ -1,0 +1,65 @@
+body {
+    font-family: "Consolas", "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono";
+    margin: 0 10%;
+}
+
+header {
+    background-color: lightgray;
+    text-align: center;
+    padding: 20px;
+}
+
+header span {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+.section {
+    padding: 20px 40px;
+    border-bottom: 1px solid lightgray;
+}
+
+.callout {
+    text-decoration: none;
+    text-align: center;
+    font-size: 18px;
+}
+
+.callout a {
+    text-decoration: none;
+}
+
+ul li {
+    display: inline;
+    border-right: 1px solid dimgray;
+    padding-right: 10px;
+}
+
+a:link {
+    color: slategray;
+}
+
+a:visited {
+    color: slategray;
+}
+
+a:hover {
+    color: dimgray;
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+}
+
+#copyright {
+    font-size: 10px;
+}
+
+#formexample {
+    margin-top: 50px;
+}
