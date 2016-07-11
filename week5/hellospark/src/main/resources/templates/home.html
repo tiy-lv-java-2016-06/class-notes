@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HelloSpark</title>
+</head>
+<body>
+    {{#user}}
+        Hello, {{name}}!
+    {{/user}}
+    {{^user}}
+        Hello, my anonymous friend!
+    {{/user}}
+
+    Foods:
+    <ul>
+        {{#food}}<li class="food">{{name}}</li>{{/food}}
+    </ul>
+</body>
+</html>
