@@ -1,3 +1,5 @@
+package AnonymousExamples;
+
 /**
  * Created by jeff on 7/11/16.
  */

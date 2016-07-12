@@ -7,14 +7,11 @@
 <body>
     {{#user}}
         Hello, {{name}}!
+        <form method="post" action="/logout"><button type="submit" name="logout">Logout</button></form>
     {{/user}}
     {{^user}}
         Hello, my anonymous friend!
     {{/user}}
 
-    Foods:
-    <ul>
-        {{#food}}<li class="food">{{name}}</li>{{/food}}
-    </ul>
 </body>
 </html>
