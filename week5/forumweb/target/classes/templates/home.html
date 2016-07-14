@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Sweet Home</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <ul>
+        {{#userName}}
+        <h3>Welcome {{userName}}</h3>
+        <form action="/logout" method="post"><button type="submit" class="btn btn-primary">Logout</button></form>
+        <br/>
+
+        <form action="/create-message" method="post" class="form-inline">
+            <input type="text" class="form-control" placeholder="Enter Your Message" name="messageText" width="200">
+            <input type="hidden" value="{{replyId}}" name="replyId"/>
+            <button type="submit" class="btn btn-primary">Post Message</button>
+        </form>
+        {{/userName}}
+        {{^userName}}
+        <form action="/login" method="post" class="form-inline">
+            <input type="text" class="form-control" placeholder="Enter your name" name="loginName"/>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        {{/userName}}
+
+        <div class="list-group">
+            {{#messages}}
+            <a href="/?replyId={{id}}" class="list-group-item">{{author}}: {{text}}</a>
+            {{/messages}}
+        </div>
+    </ul>
+</div>
+</body>
+</html>
