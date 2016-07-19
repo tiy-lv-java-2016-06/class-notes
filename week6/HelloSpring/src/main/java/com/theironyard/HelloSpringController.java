@@ -1,5 +1,6 @@
 package com.theironyard;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by jeff on 7/18/16.
@@ -16,11 +19,18 @@ import java.io.IOException;
 @Controller
 public class HelloSpringController {
 
+    @Autowired
+    public Map<String, Person> people;
+
+//    @Autowired
+//    public Person bob;
+
     public static final String SESSION_USERNAME = "userName";
 
     @RequestMapping(path = "/person", method = RequestMethod.GET)
     public String person(Model model, String name, String city, @RequestParam(defaultValue = "18") int age){
         Person p = new Person(name, city, age);
+//        people.put(p.getName(), p);
         model.addAttribute("person", p);
         return "personage";
 
