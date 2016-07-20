@@ -5,6 +5,26 @@
     <title>GameTracker</title>
 </head>
 <body>
+{{^user}}
+<form action="/login" method="post">
+    <input type="text" placeholder="Username" name="userName" required/>
+    <input type="password" placeholder="Password" name="password" required/>
+    <button type="submit">Login</button>
+</form>
+{{/user}}
+
+{{#user}}
+Welcome, {{name}}
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
+<br/><br/>
+
+<form action="/" method="get">
+    <input type="text" placeholder="Search!" name="search"/>
+    <button type="submit">Search</button>
+</form>
+
 <a href="/">All</a>
 <a href="/?genre=adventure">Adventure</a>
 <a href="/?genre=rpg">RPG</a>
@@ -36,9 +56,16 @@
 
 <ol>
     {{#games}}
-    <li>{{name}} {{platform}} {{releaseYear}}</li>
+    <li>{{name}} {{platform}} {{releaseYear}} owned by {{user.getName}}</li>
     {{/games}}
-</ol>
 
+    {{#pageResult}}
+    <li>{{name}} {{platform}} {{releaseYear}} owned by {{user.getName}}</li>
+    {{/pageResult}}
+    {{#pageResult.hasPrevious}}<a href="/?page={{prevPage}}"><--Previous</a>{{/pageResult.hasPrevious}}
+    Page: {{pageResult.getNumber}}
+    {{#pageResult.hasNext}}<a href="/?page={{nextPage}}">Next--></a>{{/pageResult.hasNext}}
+</ol>
+{{/user}}
 </body>
 </html>

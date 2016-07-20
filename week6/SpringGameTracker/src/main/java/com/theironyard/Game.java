@@ -25,14 +25,18 @@ public class Game {
     @Column(nullable = false)
     private int releaseYear;
 
+    @ManyToOne
+    User user;
+
     public Game() {
     }
 
-    public Game(String name, String platform, String genre, int releaseYear) {
+    public Game(String name, String platform, String genre, int releaseYear, User user) {
         this.name = name;
         this.platform = platform;
         this.genre = genre;
         this.releaseYear = releaseYear;
+        this.user = user;
     }
 
     public int getId() {
@@ -73,5 +77,10 @@ public class Game {
 
     public void setReleaseYear(int releaseYear) {
         this.releaseYear = releaseYear;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s(%d) on %s", name, releaseYear, platform);
     }
 }
