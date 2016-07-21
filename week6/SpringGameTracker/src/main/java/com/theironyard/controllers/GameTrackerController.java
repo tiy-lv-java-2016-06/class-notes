@@ -1,5 +1,10 @@
-package com.theironyard;
+package com.theironyard.controllers;
 
+import com.theironyard.entities.Game;
+import com.theironyard.entities.User;
+import com.theironyard.repositories.GameRepository;
+import com.theironyard.repositories.UserRepository;
+import com.theironyard.utilities.PasswordStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,7 +19,6 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -108,10 +112,10 @@ public class GameTrackerController {
     public String login(HttpSession session, String userName, String password) throws Exception {
         User user = users.findFirstByName(userName);
         if(user == null){
-            user = new User(userName, password);
+            user = new User(userName, PasswordStorage.createHash(password));
             users.save(user);
         }
-        else if(!password.equals(user.getPassword())){
+        else if(!PasswordStorage.verifyPassword(password, user.getPassword())){
             throw new Exception("Incorrect Password you slimy hacker");
         }
         session.setAttribute("userName", userName);
