@@ -1,6 +1,11 @@
 package com.theironyard.entities;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 /**
  * Created by jeff on 7/27/16.
@@ -19,12 +24,22 @@ public class AnonFile {
     @Column(nullable = false)
     private String originalFilename;
 
+    @Column(nullable = false)
+    @ColumnDefault("false")
+    private boolean permanent;
+
+    @Column(nullable = false)
+    @ColumnDefault("")
+    @Size(min = 5, max = 100)
+    private String description;
+
     public AnonFile() {
     }
 
-    public AnonFile(String filename, String originalFilename) {
+    public AnonFile(String filename, String originalFilename, String description) {
         this.filename = filename;
         this.originalFilename = originalFilename;
+        this.description = description;
     }
 
     public int getId() {
@@ -49,5 +64,13 @@ public class AnonFile {
 
     public void setOriginalFilename(String originalFilename) {
         this.originalFilename = originalFilename;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

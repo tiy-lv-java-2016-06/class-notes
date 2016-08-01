@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 
 /**
  * Created by jeff on 7/28/16.
@@ -20,29 +21,33 @@ public class User {
     private String name;
 
     @Column(nullable = false)
-    @Size(min = 6, max = 32)
     private String password;
 
-    @Column(nullable = false, columnDefinition = "varchar(255) DEFAULT 'test@test.com'")
-    @Size(min = 6)
-    private String email;
+//    @OneToMany(mappedBy = "recipient")
+//    private Collection<Photo> waitingPhotos;
 
-    @Column(nullable = false, columnDefinition = "varchar(255) DEFAULT 'las vegas'")
-    private String city;
+//    @Column(nullable = false, columnDefinition = "varchar(255) DEFAULT 'test@test.com'")
+//    @Size(min = 6)
+//    private String email;
+//
+//    @Column(nullable = false, columnDefinition = "varchar(255) DEFAULT 'las vegas'")
+//    private String city;
 
     public User() {
     }
 
     public User(String name, String password) {
-        this(name, password, "test@test.com", "Las Vegas");
-    }
-
-    public User(String name, String password, String email, String city) {
         this.name = name;
         this.password = password;
-        this.email = email;
-        this.city = city;
+
     }
+
+//    public User(String name, String password, String email, String city) {
+//        this.name = name;
+//        this.password = password;
+//        this.email = email;
+//        this.city = city;
+//    }
 
     public int getId() {
         return id;
@@ -68,19 +73,19 @@ public class User {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
+//
+//    public String getCity() {
+//        return city;
+//    }
+//
+//    public void setCity(String city) {
+//        this.city = city;
+//    }
 }

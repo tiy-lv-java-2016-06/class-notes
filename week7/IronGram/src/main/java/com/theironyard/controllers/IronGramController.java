@@ -1,10 +1,13 @@
 package com.theironyard.controllers;
 
+import com.theironyard.command.TagCommand;
 import com.theironyard.entities.Photo;
+import com.theironyard.entities.Tag;
 import com.theironyard.entities.User;
 import com.theironyard.exceptions.NotLoggedIn;
 import com.theironyard.exceptions.UserNotFoundException;
 import com.theironyard.services.PhotoRepository;
+import com.theironyard.services.TagRepository;
 import com.theironyard.services.UserRepository;
 
 import com.theironyard.exceptions.LoginFailedException;
@@ -38,6 +41,9 @@ public class IronGramController {
 
     @Autowired
     PhotoRepository photoRepository;
+
+    @Autowired
+    TagRepository tagRepository;
 
     Server dbui;
 
@@ -73,6 +79,25 @@ public class IronGramController {
     public void logout(HttpSession session, HttpServletResponse response) throws IOException {
         session.invalidate();
         response.sendRedirect("/");
+    }
+
+    @RequestMapping(path = "/photos/{id}/tags", method = RequestMethod.POST)
+    public Photo addTag(@PathVariable int id, @RequestBody TagCommand command) throws Exception {
+        Photo photo = photoRepository.getOne(id);
+        if(photo == null){
+            throw new Exception("Photo doesn't exist");
+        }
+
+        Tag tag = tagRepository.findFirstByValue(command.getValue());
+        if(tag == null){
+            tag = new Tag(command.getValue());
+            tagRepository.save(tag);
+        }
+
+        photo.addTag(tag);
+        photoRepository.save(photo);
+
+        return photo;
     }
 
     @RequestMapping(path = "/user", method = RequestMethod.POST)
