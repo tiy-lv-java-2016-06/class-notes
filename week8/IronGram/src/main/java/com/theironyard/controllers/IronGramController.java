@@ -1,5 +1,6 @@
 package com.theironyard.controllers;
 
+import com.stripe.model.Charge;
 import com.theironyard.command.TagCommand;
 import com.theironyard.entities.Photo;
 import com.theironyard.entities.Tag;
@@ -8,6 +9,7 @@ import com.theironyard.exceptions.NotLoggedIn;
 import com.theironyard.exceptions.TokenExpiredException;
 import com.theironyard.exceptions.UserNotFoundException;
 import com.theironyard.services.PhotoRepository;
+import com.theironyard.services.StripeService;
 import com.theironyard.services.TagRepository;
 import com.theironyard.services.UserRepository;
 
@@ -22,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -46,6 +49,9 @@ public class IronGramController {
 
     @Autowired
     TagRepository tagRepository;
+
+    @Autowired
+    StripeService stripeService;
 
     Server dbui;
 
@@ -178,5 +184,10 @@ public class IronGramController {
         }
 
         return photoRepository.findByRecipientOrderByIdAsc(user);
+    }
+
+    @RequestMapping(path = "/charge20", method = RequestMethod.POST)
+    public Charge chargeCard(@RequestParam(name = "stripeToken") String token){
+        return stripeService.chargeCard(2000, token);
     }
 }

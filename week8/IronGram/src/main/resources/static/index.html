@@ -23,6 +23,18 @@
 
 <div id="photos"></div>
 
+<form action="/charge20" method="POST">
+    <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="pk_test_T5py0YJik9EsQFB46zbUCZ6d"
+            data-amount="2000"
+            data-name="Just a demo"
+            data-description="Example"
+            data-image="/img/documentation/checkout/marketplace.png"
+            data-locale="auto">
+    </script>
+</form>
+
 <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 <script src="main.js"></script>
 </body>
