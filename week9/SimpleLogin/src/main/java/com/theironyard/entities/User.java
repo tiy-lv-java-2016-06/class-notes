@@ -1,6 +1,7 @@
 package com.theironyard.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.math.BigInteger;
@@ -25,6 +26,10 @@ public class User {
 
     @Column(nullable = false)
     private String token;
+
+    @Column(nullable = false)
+    @ColumnDefault("false")
+    private boolean paid = false;
 
     private String generateToken(){
         SecureRandom random = new SecureRandom();
@@ -71,5 +76,13 @@ public class User {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public boolean isPaid() {
+        return paid;
+    }
+
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 }
